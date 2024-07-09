@@ -1,0 +1,6 @@
+.my-component {
+  display: inline-block;
+  padding: 0.5em 1em;
+  border: 2px solid red;
+  color: green;
+}

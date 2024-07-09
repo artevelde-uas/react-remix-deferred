@@ -1,0 +1,65 @@
+{
+  "name": "my-react-component",
+  "description": "React compnent library with demo project and automatic documentation generation",
+  "keywords": [
+    "react"
+  ],
+  "version": "0.1.0",
+  "author": "Renaat De Muynck <renaat.demuynck@arteveldehs.be>",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/artevelde-uas/my-react-component.git",
+    "directory": "packages/lib"
+  },
+  "files": [
+    "dist/"
+  ],
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "exports": {
+    ".": {
+      "import": "./dist/index.esm.js",
+      "require": "./dist/index.cjs.js",
+      "default": "./dist/index.esm.js"
+    },
+    "./styles.css": "./dist/index.css"
+  },
+  "browser": {
+    ".": "./dist/index.esm.js",
+    "./styles.css": "./dist/index.css"
+  },
+  "scripts": {
+    "build": "rollup --config",
+    "watch": "rollup --config --watch",
+    "prepack": "yarn build && yarn build-docs && yarn copy-readme && yarn copy-license",
+    "postpack": "rimraf README.md LICENSE",
+    "build-docs": "yarn workspace docs build",
+    "copy-readme": "cpy readme-lib.md ../../lib/ --cwd=../docs/build --rename=README.md",
+    "copy-license": "cpy LICENSE packages/lib/ --cwd=../../",
+    "lint": "eslint src",
+    "clean": "rimraf ./dist/ README.md LICENSE package.tgz"
+  },
+  "dependencies": {
+    "classnames": "^2.5.1"
+  },
+  "peerDependencies": {
+    "react": "*",
+    "react-dom": "*"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.24.7",
+    "@babel/preset-env": "^7.24.7",
+    "@babel/preset-react": "^7.24.7",
+    "@rollup/plugin-babel": "^6.0.4",
+    "@rollup/plugin-commonjs": "^25.0.8",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "cpy-cli": "^4.2.0",
+    "postcss": "^8.4.39",
+    "postcss-preset-env": "^9.6.0",
+    "rimraf": "^5.0.9",
+    "rollup": "^4.18.1",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-postcss": "^4.0.2"
+  }
+}
